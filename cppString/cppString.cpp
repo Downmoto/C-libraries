@@ -29,7 +29,7 @@ namespace shaco
         delete [] m_str;
     }
 
-    String::String(const char* str)
+    String::String(const char* str) : String()
     {
         m_len = cStrLen(str);
         m_str = new char[m_len + 1];
@@ -37,12 +37,15 @@ namespace shaco
         cStrCpy(m_str, str);
     }
 
-    String::String(const String& src)
+    String::String(const String& src) : String()
     {
-        m_len = src.m_len;
-        m_str = new char[m_len + 1];
+        if (src.m_str)
+        {
+            m_len = src.m_len;
+            m_str = new char[m_len + 1];
 
-        cStrCpy(m_str, src.m_str);
+            cStrCpy(m_str, src.m_str);
+        }
     }
 
 
@@ -50,6 +53,7 @@ namespace shaco
     String::operator=(const char* str)
     {
         if (m_str) delete [] m_str;
+        m_str = nullptr;
 
         m_len = cStrLen(str);
         m_str = new char[m_len + 1];
@@ -61,11 +65,15 @@ namespace shaco
     String::operator=(const String& src)
     {
         if (m_str) delete [] m_str;
+        m_str = nullptr;
 
-        m_len = src.m_len;
-        m_str = new char[m_len + 1];
-        
-        cStrCpy(m_str, src.m_str);
+        if (src.m_str)
+        {
+            m_len = src.m_len;
+            m_str = new char[m_len + 1];
+
+            cStrCpy(m_str, src.m_str);
+        }
     }
 
     const char
@@ -80,9 +88,11 @@ namespace shaco
         return m_str[index];
     }
 
-    int
-    String::operator[](const String& src) const
-    {
 
+    std::ostream&
+    operator<<(std::ostream& os, const String& str)
+    {
+        os << str.m_str;
+        return os;
     }
 }

@@ -1,10 +1,12 @@
 #ifndef SHACO_STRING_H_
 #define SHACO_STRING_H_
 
+#include <iostream>
+
 namespace shaco
 {
     class String
-    {
+    {        
         char* m_str;
         int m_len;
 
@@ -19,17 +21,16 @@ namespace shaco
         String(const String& src);
         ~String();
         
-        // = overload
+        // = overloads
 
         String& operator=(const char* str);
         String& operator=(const String& src);
 
-        // [] overloads to find data in string
+        // [] overload
 
         const char operator[](int index) const;
-        int operator[](const String& src) const;
-        int operator[](const char* src) const;
 
+        friend std::ostream& operator<<(std::ostream& os, const String& str);
     };
 }
 

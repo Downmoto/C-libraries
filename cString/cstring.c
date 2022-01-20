@@ -1,4 +1,5 @@
 #include "cstring.h"
+#define NULL ((void *)0)
 
 void strCpy(char *des, const char *src)
 {
@@ -47,7 +48,7 @@ const char *strStr(const char *source, const char *toFind)
         i = strnCmp(source, toFind, strLen(toFind));
     while (toFind[0] != *source++);
 
-    return (!i) ? --source : nullptr;
+    return (!i) ? --source : NULL;
 }
 
 void strCat(char *des, const char *src)

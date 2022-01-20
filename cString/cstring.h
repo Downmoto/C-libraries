@@ -6,7 +6,7 @@ void strCpy(char *des, const char *src);
 
 // Copies the source character string into the destination upto "len"
 // characters. The destination will be null terminated
-void strnCpy(char *des, const char *src, int len);
+void strnCpy(char *des, const char *src, unsigned int len);
 
 // Compares two C-strings
 // returns 0 if they're the same
@@ -17,7 +17,7 @@ int strCmp(const char *s1, const char *s2);
 // returns 0 if thare the same
 // return > 0 if s1 > s2
 // return < 0 if s1 < s2
-int strnCmp(const char *s1, const char *s2, int len);
+int strnCmp(const char *s1, const char *s2, unsigned int len);
 
 // returns the length of the C-string in characters
 int strLen(const char *s);

@@ -9,7 +9,7 @@ void strCpy(char *des, const char *src)
     des[i] = '\0';
 }
 
-void strnCpy(char *des, const char *src, int len)
+void strnCpy(char *des, const char *src, unsigned int len)
 {
     int i;
     for (i = 0; i < len; ++i)
@@ -25,7 +25,7 @@ int strCmp(const char *s1, const char *s2)
     return (*s1 - *s2);
 }
 
-int strnCmp(const char *s1, const char *s2, int len)
+int strnCmp(const char *s1, const char *s2, unsigned int len)
 {
     while (*s1 != '\0' && *s2 != '\0' && --len != 0 && (*s1 - *s2) == 0) 
     {s1++; s2++;}

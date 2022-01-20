@@ -13,7 +13,7 @@ namespace shaco
         void cStrCpy(char* des, const char* src);
         int cStrLen(const char* src);
 
-        public:
+    public:
         // basic constructors and destructor declaration
         
         String();

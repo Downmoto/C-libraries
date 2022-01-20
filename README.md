@@ -35,3 +35,26 @@ String::operator=(const char* str)
     cStrCpy(m_str, str);
 }
 ```
+
+## C++ Smart Pointers
+MY own implementation of the C++ smart pointer library
+
+Contains:
+ - unique pointer implementation
+ - shared pointer implementation
+
+```C++
+template<typename T>
+class SmartPointer
+{
+protected:
+    T* m_ptr;
+
+public:
+    virtual ~SmartPointer();
+
+    T* get() { return m_ptr; };
+    T& operator*() { return *m_ptr; };
+    T* operator->() { return m_ptr; };
+};
+```

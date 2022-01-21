@@ -8,12 +8,14 @@ namespace shaco
         unsigned int m_cnt;
 
     public:
-        SharedCounter() { m_cnt = 0; };
+        SharedCounter() { m_cnt = 0; }
 
-        unsigned int count() { return m_cnt; };
+        unsigned int count() const { return m_cnt; }
 
-        void operator++() { m_cnt++; };
-        void operator--() { m_cnt--; };    
+        void operator++() { m_cnt++; }
+        void operator++(int) { m_cnt++; }
+        void operator--() { m_cnt--; } 
+        void operator--(int) { m_cnt--; } 
     };
 
     template<typename T>
@@ -25,9 +27,9 @@ namespace shaco
     public:
         virtual ~SmartPointer();
 
-        T* get() { return m_ptr; };
-        T& operator*() { return *m_ptr; };
-        T* operator->() { return m_ptr; };
+        T* get() const { return m_ptr; }
+        T& operator*() { return *m_ptr; }
+        T* operator->() { return m_ptr; }
     };
 
     template<typename T>
@@ -49,24 +51,21 @@ namespace shaco
             m_ptr = ptr;
             m_count = new SharedCounter();
 
-            (*m_count)++
+            (*m_count)++;
         }
 
         SharedPointer(SharedPointer<T>& ptr)
         {
             m_ptr = ptr;
-
-            delete m_count;
-            m_count = nullptr;
             m_count = ptr.m_count;
 
             (*m_count)++;
         }
 
-        ~SharedPointer()
+        ~SharedPointer() override
         {
             (*m_count)--;
-            if (!m_count->count())
+            if (m_count->count() == 0)
             {
                 delete m_ptr;
                 delete m_count;

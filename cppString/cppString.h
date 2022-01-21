@@ -8,10 +8,10 @@ namespace shaco
     class String
     {        
         char* m_str;
-        int m_len;
+        unsigned m_len;
 
         void cStrCpy(char* des, const char* src);
-        int cStrLen(const char* src);
+        unsigned cStrLen(const char* src);
 
     public:
         // basic constructors and destructor declaration
@@ -28,7 +28,7 @@ namespace shaco
 
         // [] overload
 
-        const char operator[](int index) const;
+        const char operator[](unsigned index) const;
 
         friend std::ostream& operator<<(std::ostream& os, const String& str);
     };

@@ -5,15 +5,14 @@ namespace shaco
     void 
     String::cStrCpy(char *des, const char *src)
     {
-        int i;
-        for (i = 0; src[i] != '\0'; ++i)
+        for (unsigned i = 0; src[i] != '\0'; ++i)
             des[i] = src[i];
     }
 
-    int
+    unsigned int
     String::cStrLen(const char* src)
     {
-        int len;
+        unsigned int len;
         for (len = 0; src[len] != '\0'; ++len);
         return len;
     }
@@ -77,7 +76,7 @@ namespace shaco
     }
 
     const char
-    String::operator[](int index) const
+    String::operator[](unsigned index) const
     {
         if (!m_str) 
             throw "Uninitialized String";

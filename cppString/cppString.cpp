@@ -75,7 +75,7 @@ namespace shaco
         }
     }
 
-    const char
+    const char*
     String::operator[](unsigned index) const
     {
         if (!m_str) 
@@ -84,7 +84,7 @@ namespace shaco
         if (index >= m_len)
             throw "Index out of bounds";
             
-        return m_str[index];
+        return &m_str[index];
     }
 
 

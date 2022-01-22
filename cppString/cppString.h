@@ -20,15 +20,35 @@ namespace shaco
         String(const char* str);
         String(const String& src);
         ~String();
+
+        // Capacity
+        unsigned length() const;
+        void clear();
+        bool empty() const;
         
         // = overloads
 
         String& operator=(const char* str);
         String& operator=(const String& src);
+        String& operator=(char c);
 
-        // [] overload
+        // Element access
 
-        const char operator[](unsigned index) const;
+        const char* operator[](unsigned index) const;
+        const char* at(unsigned index) const;
+        const char* back() const;
+        const char* front() const;
+
+        // String operations
+        unsigned find(const char* str, unsigned npos = 0);
+        unsigned find(const String& src, unsigned npos = 0);
+        unsigned find(char c, unsigned npos = 0);
+
+        unsigned rfind(const char *str, unsigned npos = 0);
+        unsigned rfind(const String &src, unsigned npos = 0);
+        unsigned rfind(char c, unsigned npos = 0);
+
+        String substr(unsigned start, unsigned end);
 
         friend std::ostream& operator<<(std::ostream& os, const String& str);
     };
